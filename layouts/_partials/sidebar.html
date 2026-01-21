@@ -1,0 +1,28 @@
+<aside class="lg:col-span-4 space-y-8">
+  
+  <div class="bg-base-100 p-8 rounded-2xl shadow-sm border border-base-300">
+    <h4 class="text-lg font-bold text-base-content mb-4">Sobre o Blog</h4>
+    <p class="text-sm text-base-content/70 leading-relaxed">
+      Compartilho aqui experiências sobre desenvolvimento web, clean code e tecnologia. Sinta-se à vontade para explorar.
+    </p>
+  </div>
+
+  <div class="bg-base-100 p-8 rounded-2xl shadow-sm border border-base-300 sticky top-24">
+    <h4 class="text-lg font-bold text-base-content mb-6">Categorias</h4>
+    
+    <nav class="flex flex-col gap-2">
+      {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+      <a href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}" 
+         class="flex items-center justify-between p-3 rounded-lg hover:bg-base-200 text-base-content/80 hover:text-primary transition-all group">
+        
+        <span class="capitalize font-medium">{{ $name }}</span>
+        
+        <span class="text-xs font-bold bg-base-200 text-base-content/60 px-2 py-1 rounded-md group-hover:bg-primary group-hover:text-primary-content transition-colors">
+          {{ $taxonomy.Count }}
+        </span>
+      </a>
+      {{ end }}
+    </nav>
+  </div>
+
+</aside>

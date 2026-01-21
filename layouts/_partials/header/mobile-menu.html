@@ -1,0 +1,20 @@
+<div id="mobile-menu"
+     class="fixed top-0 right-[-100%] h-full w-1/2 bg-base-100 shadow-2xl transition-all duration-300 z-50 flex flex-col p-6 border-l border-base-200">
+  
+  <button id="mobile-menu-close"
+          class="self-end mb-6 text-base-content hover:text-primary focus:outline-none transition-colors"
+          aria-label="Fechar menu">
+    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <nav class="flex flex-col gap-4 text-base-content font-medium">
+    <a href="/" class="mobile-link hover:text-primary transition-colors py-2">Início</a>
+    <a href="/#about" class="mobile-link hover:text-primary transition-colors py-2">Sobre</a>
+    <a href="/projects/" class="mobile-link hover:text-primary transition-colors py-2">Projetos</a>
+    <a href="/#contact" class="mobile-link hover:text-primary transition-colors py-2">Contato</a>
+    <a href="/posts/" class="mobile-link hover:text-primary transition-colors py-2">Blog</a>
+  </nav>
+</div>

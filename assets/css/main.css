@@ -1,0 +1,71 @@
+@import "tailwindcss";
+@source "hugo_stats.json";
+
+@import "theme.css";
+
+@plugin "@tailwindcss/typography";
+
+/* Para Tailwind 4: ativar manualmente o dark mode baseado na classe .dark */
+/* @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+--color-honeydew-50: #e8fdf2;
+--color-honeydew-100: #d1fae6;
+--color-honeydew-200: #a3f5cc;
+--color-honeydew-300: #75f0b3;
+--color-honeydew-400: #46ec99;
+--color-honeydew-500: #18e780;
+--color-honeydew-600: #13b966;
+--color-honeydew-700: #0f8a4d;
+--color-honeydew-800: #0a5c33;
+--color-honeydew-900: #052e1a;
+--color-honeydew-950: #032012;
+
+--color-grape-soda-50: #faebf6;
+--color-grape-soda-100: #f5d6ec;
+--color-grape-soda-200: #eaaed9;
+--color-grape-soda-300: #e085c6;
+--color-grape-soda-400: #d55db3;
+--color-grape-soda-500: #cb34a0;
+--color-grape-soda-600: #a22a80;
+--color-grape-soda-700: #7a1f60;
+--color-grape-soda-800: #511540;
+--color-grape-soda-900: #290a20;
+--color-grape-soda-950: #1c0716;
+
+--color-deep-purple-50: #faeaf7;
+--color-deep-purple-100: #f5d6ef;
+--color-deep-purple-200: #ebaddf;
+--color-deep-purple-300: #e184ce;
+--color-deep-purple-400: #d75bbe;
+--color-deep-purple-500: #cd32ae;
+--color-deep-purple-600: #a4288b;
+--color-deep-purple-700: #7b1e68;
+--color-deep-purple-800: #521446;
+--color-deep-purple-900: #290a23;
+--color-deep-purple-950: #1d0718;
+
+--color-midnight-violet-50: #f6eef5;
+--color-midnight-violet-100: #eeddea;
+--color-midnight-violet-200: #ddbbd6;
+--color-midnight-violet-300: #cc99c1;
+--color-midnight-violet-400: #bb77ac;
+--color-midnight-violet-500: #aa5597;
+--color-midnight-violet-600: #884479;
+--color-midnight-violet-700: #66335b;
+--color-midnight-violet-800: #44223d;
+--color-midnight-violet-900: #22111e;
+--color-midnight-violet-950: #180c15;
+
+--color-coffee-bean-50: #f5f0f1;
+--color-coffee-bean-100: #ebe0e3;
+--color-coffee-bean-200: #d7c1c7;
+--color-coffee-bean-300: #c3a2aa;
+--color-coffee-bean-400: #ae848e;
+--color-coffee-bean-500: #9a6572;
+--color-coffee-bean-600: #7b515b;
+--color-coffee-bean-700: #5d3c44;
+--color-coffee-bean-800: #3e282e;
+--color-coffee-bean-900: #1f1417;
+--color-coffee-bean-950: #160e10;
+} */

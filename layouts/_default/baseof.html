@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth" style="scroll-padding-top: 5rem;">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    {{ if .IsHome }}
+      {{ .Site.Title }}
+    {{ else }}
+      {{ .Title }} · {{ .Site.Title }}
+    {{ end }}
+  </title>
+
+  {{ with .Site.Params.description }}
+    <meta name="description" content="{{ . }}">
+  {{ end }}
+
+  {{/* Script para evitar "flicker" (piscar) do tema errado ao carregar */}}
+  <script>
+    // Verifica o localStorage ou a preferência do Sistema Operacional
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+
+  {{/* Tailwind CSS (via CLI) */}}
+  {{ with (templates.Defer (dict "key" "global")) }}
+    {{ partial "css.html" . }}
+  {{ end }}
+</head>
+
+{{/* MUDANÇAS AQUI:
+  1. bg-neutral-50 -> bg-base-100 (Cor de fundo do tema)
+  2. text-neutral-900 -> text-base-content (Cor do texto principal)
+*/}}
+<body class="min-h-screen bg-base-100 text-base-content antialiased transition-colors duration-300">
+
+  {{ block "header" . }}
+    {{ partial "header/index.html" . }}
+  {{ end }}
+
+  {{ block "main" . }}{{ end }}
+
+  {{ block "footer" . }}
+    {{ partial "footer/index.html" . }}
+  {{ end }}
+
+  <script src="/js/header.js"></script>
+  <script src="/js/ui.js"></script>
+</body>
+</html>

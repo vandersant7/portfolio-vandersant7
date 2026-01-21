@@ -1,0 +1,80 @@
+{{ define "main" }}
+<div class="min-h-screen bg-base-100 py-16 transition-colors duration-500">
+  <div class="mx-auto max-w-6xl px-6">
+    
+    <header class="mb-12 text-center md:text-left">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-base-content capitalize">
+        Projetos
+      </h1>
+      <p class="mt-4 text-lg text-base-content/70 max-w-2xl">
+        Conheça alguns dos trabalhos desenvolvidos, focados em performance e experiência do usuário.
+      </p>
+    </header>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {{ range .Pages }}
+      <article class="group flex flex-col bg-base-200 rounded-2xl overflow-hidden shadow-sm border border-base-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+        
+        {{ $imageLink := "" }}
+        {{ with .Params.image }}
+          {{/* 1. Tenta achar dentro da pasta do projeto (O PONTO . É CRUCIAL AQUI) */}}
+          {{ with $res := $.Resources.GetMatch . }}
+             {{/* Ops! Dentro do range, o $ muda. Vamos usar .Resources direto do item */}}
+          {{ end }}
+          
+          {{/* FORMA CORRETA: */}}
+          {{/* O contexto (.) aqui dentro do with é o nome da imagem (string). */}}
+          {{/* Precisamos acessar os Resources da página pai do with via variavel ou contexto externo */}}
+        {{ end }}
+
+        {{/* VAMOS SIMPLIFICAR A LÓGICA PARA NÃO TER ERRO DE CONTEXTO */}}
+        {{ $img := .Resources.GetMatch .Params.image }}
+        {{ if $img }}
+          {{ $imageLink = $img.RelPermalink }}
+        {{ else }}
+          {{/* Se não achou no bundle, usa o link direto (Static/Externo) */}}
+          {{ $imageLink = .Params.image }}
+        {{ end }}
+
+        {{ if $imageLink }}
+        <div class="aspect-video w-full overflow-hidden bg-base-300 relative">
+          <img 
+            src="{{ $imageLink }}" 
+            alt="{{ .Title }}" 
+            loading="lazy"
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          >
+        </div>
+        {{ end }}
+
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex flex-wrap gap-2 mb-4">
+            {{ range first 2 .Params.tags }}
+            <span class="text-xs font-bold px-2 py-1 rounded bg-primary/10 text-primary uppercase tracking-wide">
+              {{ . }}
+            </span>
+            {{ end }}
+          </div>
+
+          <h2 class="text-xl font-bold text-base-content mb-3 group-hover:text-primary transition-colors">
+            <a href="{{ .RelPermalink }}">
+              {{ .Title }}
+            </a>
+          </h2>
+          
+          <p class="text-base-content/70 text-sm line-clamp-3 mb-4 flex-1">
+            {{ .Params.description }}
+          </p>
+
+          <a href="{{ .RelPermalink }}" class="text-sm font-bold text-primary flex items-center gap-1 mt-auto">
+            Ver detalhes
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+
+  </div>
+</div>
+{{ end }}
