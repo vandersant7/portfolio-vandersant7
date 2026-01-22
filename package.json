@@ -21,6 +21,7 @@
   "homepage": "https://github.com/vandersant7/portfolio-vandersant7#readme",
   "devDependencies": {
     "@tailwindcss/cli": "^4.0.0",
+    "@tailwindcss/typography": "^0.5.19",
     "tailwindcss": "^4.0.0"
   }
 }
