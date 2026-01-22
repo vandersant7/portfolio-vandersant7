@@ -1,0 +1,24 @@
+{
+  "name": "portfolio-vandersant7",
+  "version": "1.0.0",
+  "description": "Portfólio pessoal e blog tecnológico showcasando projetos, habilidades e artigos sobre desenvolvimento de software.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vandersant7/portfolio-vandersant7.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vandersant7/portfolio-vandersant7/issues"
+  },
+  "homepage": "https://github.com/vandersant7/portfolio-vandersant7#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.0.0"
+  }
+}
