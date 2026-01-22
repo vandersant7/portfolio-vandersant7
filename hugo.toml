@@ -4,7 +4,6 @@
 baseURL = "https://seusite.com/"         # URL do site (mude depois)
 languageCode = "pt-br"                   # Idioma principal
 title = "Evandro Santos"                 # Título do site
-theme = ""                               # (sem tema por enquanto)
 enableRobotsTXT = true
 
 # ----------------------------------------
