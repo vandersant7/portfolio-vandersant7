@@ -77,6 +77,8 @@ main() {
   npm ci 
   # 'npm ci' é melhor que 'npm install' para servidores de build (mais rápido e limpo)
 
+
+export PATH="$(pwd)/node_modules/.bin:${PATH}"
   # ---------------------------------------------------------------------------
   # 4. Build do Site
   # ---------------------------------------------------------------------------
