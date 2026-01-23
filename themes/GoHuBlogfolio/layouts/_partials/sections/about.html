@@ -1,0 +1,105 @@
+{{/* 1. Busca explicitamente a página "about" */}}
+{{ with site.GetPage "about" }}
+
+<section id="about" class="bg-base-200 py-20 transition-colors duration-500 overflow-hidden">
+  <div class="mx-auto max-w-6xl px-6">
+
+    {{/* --- GRID PRINCIPAL --- */}}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+      
+      {{/* COLUNA 1: A Imagem (Limpa e Ajustada) */}}
+      <div class="flex justify-center md:justify-start order-first">
+        
+        {{ $img := .Resources.GetMatch "profile*" }}
+        {{ if not $img }}
+          {{ $img = resources.GetMatch .Params.image }}
+        {{ end }}
+
+        {{ if $img }}
+          {{/* MUDANÇAS:
+             1. Removi a div de fundo (sombra deslocada).
+             2. Usei max-w-[320px] no mobile: fica maior que antes, mas não gigante.
+             3. Mantive aspect-square: a foto será sempre quadrada, evitando ficar muito alta.
+             4. shadow-2xl: Sombra suave apenas na própria foto.
+          */}}
+          <img 
+            src="{{ $img.RelPermalink }}" 
+            alt="Foto de {{ .Title }}" 
+            class="relative z-10 rounded-2xl shadow-2xl object-cover bg-base-300
+                   w-full max-w-[320px] md:max-w-md aspect-square 
+                   mx-auto md:mx-0"
+            loading="lazy"
+          >
+        {{ else }}
+          {{/* Placeholder Limpo */}}
+          <div class="rounded-2xl bg-base-300 flex items-center justify-center text-base-content/30 border-2 border-dashed border-base-content/10 
+                      w-full max-w-[320px] md:max-w-md aspect-square mx-auto md:mx-0">
+            <span class="text-sm font-medium px-4 text-center">Adicione profile.jpg</span>
+          </div>
+        {{ end }}
+      </div>
+
+      {{/* COLUNA 2: O Texto */}}
+      <div class="flex flex-col gap-6 text-center md:text-left">
+        <header>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-base-content mb-6 relative inline-block">
+            {{ .Title }}
+            <span class="absolute -bottom-2 left-0 right-0 md:right-auto md:left-0 md:w-1/3 h-1.5 bg-primary rounded-full mx-auto md:mx-0 block"></span>
+          </h2>
+          
+          <div class="prose prose-lg max-w-none text-base-content/80 
+                      prose-headings:text-base-content 
+                      prose-p:leading-relaxed
+                      prose-strong:text-primary prose-strong:font-bold
+                      prose-a:text-primary hover:prose-a:underline">
+            {{ .Content }}
+          </div>
+        </header>
+
+        {{/* Botão Premium */}}
+        {{ with .Params.cta }}
+        <div class="mt-6 flex justify-center md:justify-start">
+          <a href="{{ .link }}" 
+             class="
+               group relative inline-flex items-center gap-3 px-8 py-3 
+               overflow-hidden rounded-full
+               bg-transparent border-2 border-primary 
+               text-primary font-bold tracking-wide
+               transition-all duration-300 ease-out
+               hover:bg-primary hover:text-primary-content hover:shadow-xl hover:-translate-y-1
+             ">
+            <span class="relative z-10">{{ .label }}</span>
+            <svg class="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" 
+                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+        {{ end }}
+
+      </div>
+      
+    </div>
+
+    {{/* --- PILARES --- */}}
+    {{ with .Params.pilares }}
+    <div class="border-t border-base-content/10 pt-16 mt-8">
+      <div class="grid gap-8 md:grid-cols-3">
+        {{ range . }}
+        <div class="bg-base-100 p-6 rounded-xl shadow-sm border border-base-content/5 hover:border-primary/30 hover:shadow-md transition-all duration-300 text-center md:text-left group">
+          <h3 class="text-xl font-bold text-base-content mb-3 group-hover:text-primary transition-colors">
+            {{ .title }}
+          </h3>
+          <p class="text-base-content/70 leading-relaxed text-sm">
+            {{ .text }}
+          </p>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+  </div>
+</section>
+
+{{ end }}
