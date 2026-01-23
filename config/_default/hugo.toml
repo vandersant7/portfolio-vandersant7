@@ -1,0 +1,12 @@
+baseURL = "https://seusite.com/"
+languageCode = "pt-br"
+title = "Evandro Santos"
+theme = "GoHuBlogfolio"
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 6
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"

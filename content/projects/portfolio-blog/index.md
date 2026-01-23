@@ -8,7 +8,7 @@ tags:
   - Tailwind CSS
   - Web Performance
   - Arquitetura de Software
-draft: true
+draft: false
 ---
 
 # Portfolio & Blog - Evandro Santos

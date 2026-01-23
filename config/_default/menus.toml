@@ -1,0 +1,28 @@
+# config/_default/menus.toml
+
+# Atenção: Dentro de menus.toml, usa-se [[footer]], NÃO [[menu.footer]]
+
+[[footer]]
+  name = "Início"
+  url = "/#hero"
+  weight = 1
+
+[[footer]]
+  name = "Projetos"
+  url = "/projects/"
+  weight = 2
+
+[[footer]]
+  name = "Blog"
+  url = "/posts/"  # Ou "/blog/" se você renomeou a pasta
+  weight = 3
+
+[[footer]]
+  name = "Sobre"
+  url = "/#about"
+  weight = 4
+
+[[footer]]
+  name = "Contato"
+  url = "/#contact"
+  weight = 5

@@ -12,27 +12,18 @@
     </header>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {{ range .Pages }}
+      
+      {{/* --- MUDANÇA 1: Ativando o Paginador aqui --- */}}
+      {{ range .Paginator.Pages }}
+
       <article class="group flex flex-col bg-base-200 rounded-2xl overflow-hidden shadow-sm border border-base-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
         
+        {{/* Lógica de Imagem Original Mantida */}}
         {{ $imageLink := "" }}
-        {{ with .Params.image }}
-          {{/* 1. Tenta achar dentro da pasta do projeto (O PONTO . É CRUCIAL AQUI) */}}
-          {{ with $res := $.Resources.GetMatch . }}
-             {{/* Ops! Dentro do range, o $ muda. Vamos usar .Resources direto do item */}}
-          {{ end }}
-          
-          {{/* FORMA CORRETA: */}}
-          {{/* O contexto (.) aqui dentro do with é o nome da imagem (string). */}}
-          {{/* Precisamos acessar os Resources da página pai do with via variavel ou contexto externo */}}
-        {{ end }}
-
-        {{/* VAMOS SIMPLIFICAR A LÓGICA PARA NÃO TER ERRO DE CONTEXTO */}}
         {{ $img := .Resources.GetMatch .Params.image }}
         {{ if $img }}
           {{ $imageLink = $img.RelPermalink }}
         {{ else }}
-          {{/* Se não achou no bundle, usa o link direto (Static/Externo) */}}
           {{ $imageLink = .Params.image }}
         {{ end }}
 
@@ -74,6 +65,38 @@
       </article>
       {{ end }}
     </div>
+
+    {{/* --- MUDANÇA 2: Adicionando os botões de Navegação --- */}}
+    {{ if gt .Paginator.TotalPages 1 }}
+    <div class="mt-16 flex justify-center items-center gap-4">
+      
+      {{/* Botão Anterior */}}
+      {{ if .Paginator.HasPrev }}
+      <a href="{{ .Paginator.Prev.URL }}" class="btn btn-outline gap-2 group">
+        <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" /></svg>
+        Anterior
+      </a>
+      {{ else }}
+      <button class="btn btn-disabled opacity-50 cursor-not-allowed">Anterior</button>
+      {{ end }}
+
+      {{/* Indicador de Página */}}
+      <span class="text-sm font-medium text-base-content/60">
+        Página {{ .Paginator.PageNumber }} de {{ .Paginator.TotalPages }}
+      </span>
+
+      {{/* Botão Próxima */}}
+      {{ if .Paginator.HasNext }}
+      <a href="{{ .Paginator.Next.URL }}" class="btn btn-outline gap-2 group">
+        Próxima
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+      </a>
+      {{ else }}
+      <button class="btn btn-disabled opacity-50 cursor-not-allowed">Próxima</button>
+      {{ end }}
+
+    </div>
+    {{ end }}
 
   </div>
 </div>

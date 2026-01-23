@@ -1,0 +1,10 @@
+name = "Portfolio Vandersant"
+license = "MIT"
+licenselink = "https://github.com/seu-repo/LICENSE"
+description = "Tema minimalista com Tailwind v4"
+homepage = "https://seusite.com"
+min_version = "0.120.0"
+
+[author]
+  name = "Evandro Santos"
+  homepage = "https://evandrosantos.com"

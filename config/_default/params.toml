@@ -1,0 +1,14 @@
+# config/_default/params.toml
+
+author = "Evandro Santos"
+description = "Portfolio + Blog usando Hugo + Tailwind CSS"
+
+# Seção de rodapé
+[footer]
+  description = "Experiências digitais com foco em performance e UX."
+
+# Redes Sociais
+[social]
+  github = "https://github.com/vandersant7"
+  linkedin = "https://linkedin.com/in/seu-usuario"
+  whatsapp = "https://wa.me/5511999999999"
