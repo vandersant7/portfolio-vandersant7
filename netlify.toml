@@ -1,0 +1,25 @@
+[build]
+  publish = "public"
+  # O comando abaixo:
+  # 1. Ajusta configurações do Git para evitar problemas com nomes de arquivos
+  # 2. Roda o Hugo limpando cache (gc), minificando e forçando a URL correta da Netlify
+  command = """
+    git config core.quotepath false && \
+    hugo --gc --minify --baseURL "${URL}"
+  """
+
+[build.environment]
+  # Versão recomendada (ajuste se quiser travar numa específica)
+  HUGO_VERSION = "0.154.4"
+  
+  # Essencial para processar o Tailwind/SCSS
+  HUGO_EXTENDED = "true"
+  
+  # Garante uma versão recente do Node para o Tailwind v4
+  NODE_VERSION = "20"
+  
+  # Define o fuso horário (opcional, mas bom para datas de posts)
+  TZ = "America/Sao_Paulo"
+
+[context.production.environment]
+  HUGO_ENV = "production"
